@@ -1,0 +1,68 @@
+	create database ativ27_09;
+
+	CREATE TABLE Cliente (
+		ID INT PRIMARY KEY AUTO_INCREMENT,
+		Nome VARCHAR(100) NOT NULL,
+		CPF VARCHAR(11) NOT NULL,
+		RG VARCHAR(12) NOT NULL,
+		Telefone VARCHAR(15),
+		Endereco VARCHAR(255)
+	);
+
+		CREATE TABLE Dependente (
+			DEP_ID INT PRIMARY KEY AUTO_INCREMENT,
+			Nome VARCHAR(100) NOT NULL,
+			CPF VARCHAR(11) NOT NULL,
+			idCliente INT,
+			FOREIGN KEY (idCliente) REFERENCES Cliente(ID)
+		);
+
+
+	INSERT INTO Cliente (Nome, CPF, RG, Telefone, Endereco) VALUES
+	('João Silva', '12345678901', '12 345 678-9', '31987654321', 'Rua A, 123'),
+	('Maria Oliveira', '23456789012', '23 456 789-0', '31976543210', 'Rua B, 456'),
+	('Carlos Santos', '34567890123', '34 567 890-1', '31965432109', 'Rua C, 789'),
+	('Ana Costa', '45678901234', '45 678 901-2', '31954321098', 'Rua D, 101'),
+	('Lucas Pereira', '56789012345', '56 789 012-3', '31943210987', 'Rua E, 202');
+
+	INSERT INTO Dependente (Nome, CPF, idCliente) VALUES
+	('Pedro Silva', '98765432100', 1),
+	('Ana Silva', '87654321001', 1),
+	('Gustavo Oliveira', '76543210912', 2),
+	('Fernanda Santos', '65432109823', 2),
+	('Lucas Costa', '54321098734', 3),
+	('Juliana Pereira', '43210987645', 4),
+	('Ricardo Almeida', '32109876556', 5),
+	('Camila Ferreira', '21098765467', 5);
+
+	UPDATE Cliente 
+	SET Nome = 'João Pedro Silva' 
+	WHERE ID = 1;
+
+	UPDATE Cliente 
+	SET Nome = 'Maria Clara Oliveira' 
+	WHERE ID = 2;
+
+	UPDATE Cliente 
+	SET Nome = 'Carlos Eduardo Santos' 
+	WHERE ID = 3;
+
+	UPDATE Cliente 
+    SET Endereco = 'Rua Nova A, 100'
+    WHERE ID = 1;
+    
+    UPDATE Cliente 
+    SET Endereco = 'Rua Nova B, 200' 
+    WHERE ID = 2;
+    
+    UPDATE Cliente 
+    SET Endereco = 'Rua Nova C, 300' 
+    WHERE ID = 3;
+    UPDATE Cliente 
+    SET Endereco = 'Rua Nova D, 400' 
+    WHERE ID = 4;
+
+	DELETE FROM Dependente 
+	WHERE DEP_ID IN (1, 2, 3);
+
+	select * from Cliente;
